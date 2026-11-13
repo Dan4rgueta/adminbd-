@@ -670,3 +670,61 @@ WHERE database_name = N'GimnasioDB'
   AND database_principal_name IN (N'usuario_finanzas', N'usuario_recepcion')
 ORDER BY event_time DESC;
 GO
+-- Probar la auditoría de INSERT sin dejar un pago de prueba
+USE GimnasioDB;
+GO
+
+DECLARE @InicioPrueba DATETIME2(7) = SYSUTCDATETIME();
+
+-- Buscar a Ana antes de cambiar de usuario.
+DECLARE @SocioID INT = (
+    SELECT SocioID
+    FROM operacion.Socio
+    WHERE Correo = N'ana.martinez@example.com'
+);
+
+IF @SocioID IS NULL
+    THROW 50113, N'No se encontró a Ana para la prueba.', 1;
+
+EXECUTE AS USER = N'usuario_finanzas';
+BEGIN TRY
+    BEGIN TRANSACTION;
+
+    INSERT INTO finanzas.Pago (SocioID, Monto)
+    VALUES (@SocioID, 1.00);
+
+    ROLLBACK TRANSACTION;
+END TRY
+BEGIN CATCH
+    IF XACT_STATE() <> 0
+        ROLLBACK TRANSACTION;
+    REVERT;
+    THROW;
+END CATCH;
+REVERT;
+
+-- Dar tiempo a que la auditoría escriba el evento en el archivo.
+WAITFOR DELAY '00:00:02';
+
+SELECT TOP (1)
+    event_time AS FechaHoraUTC,
+    database_principal_name AS Usuario,
+    action_id AS Accion,
+    succeeded AS PermisoConcedido,
+    schema_name AS Esquema,
+    object_name AS Tabla,
+    statement AS Instruccion
+FROM sys.fn_get_audit_file(
+    N'/var/opt/mssql/log/Auditoria_Gimnasio_*.sqlaudit',
+    DEFAULT,
+    DEFAULT
+)
+WHERE database_name = N'GimnasioDB'
+  AND schema_name = N'finanzas'
+  AND object_name = N'Pago'
+  AND database_principal_name = N'usuario_finanzas'
+  AND action_id = 'IN'
+  AND session_id = @@SPID
+  AND event_time >= @InicioPrueba
+ORDER BY event_time DESC;
+GO
