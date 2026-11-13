@@ -455,3 +455,20 @@ JOIN @Sesiones AS p ON p.Clase = c.Nombre
                    AND p.Inicio = s.FechaHoraInicio
 ORDER BY s.FechaHoraInicio;
 GO
+-- Roles de seguridad del gimnasio
+USE GimnasioDB;
+GO
+
+IF DATABASE_PRINCIPAL_ID(N'rol_recepcion') IS NULL
+    CREATE ROLE rol_recepcion AUTHORIZATION dbo;
+
+IF DATABASE_PRINCIPAL_ID(N'rol_finanzas') IS NULL
+    CREATE ROLE rol_finanzas AUTHORIZATION dbo;
+GO
+
+SELECT name AS Rol
+FROM sys.database_principals
+WHERE type = 'R'
+  AND name IN (N'rol_recepcion', N'rol_finanzas')
+ORDER BY name;
+GO
