@@ -263,3 +263,94 @@ GO
 SELECT name AS Procedimiento
 FROM sys.procedures
 WHERE object_id = OBJECT_ID(N'operacion.RegistrarReserva', N'P');
+
+-- Comprobacion que el cupo se asigna 1 vez
+USE GimnasioDB;
+GO
+
+DECLARE @Socio1 INT, @Socio2 INT, @Entrenador INT, @Clase INT, @Sesion INT;
+DECLARE @Etiqueta VARCHAR(36) = CONVERT(VARCHAR(36), NEWID());
+DECLARE @Inicio DATETIME2(0) = DATEADD(DAY, 1, SYSDATETIME());
+DECLARE @ProbandoSegundoSocio BIT = 0;
+
+BEGIN TRY
+    BEGIN TRANSACTION;
+
+    INSERT INTO operacion.Socio (Nombres, Apellidos, Correo)
+    VALUES (N'Ana', N'Prueba', CONCAT('ana-', @Etiqueta, '@example.com'));
+    SET @Socio1 = CONVERT(INT, SCOPE_IDENTITY());
+
+    INSERT INTO operacion.Socio (Nombres, Apellidos, Correo)
+    VALUES (N'Luis', N'Prueba', CONCAT('luis-', @Etiqueta, '@example.com'));
+    SET @Socio2 = CONVERT(INT, SCOPE_IDENTITY());
+
+    INSERT INTO operacion.Entrenador (Nombres, Apellidos, Correo)
+    VALUES (N'Carlos', N'Prueba', CONCAT('carlos-', @Etiqueta, '@example.com'));
+    SET @Entrenador = CONVERT(INT, SCOPE_IDENTITY());
+
+    INSERT INTO operacion.Clase (Nombre)
+    VALUES (CONCAT(N'Spinning de prueba ', @Etiqueta));
+    SET @Clase = CONVERT(INT, SCOPE_IDENTITY());
+
+    INSERT INTO operacion.Sesion
+        (ClaseID, EntrenadorID, FechaHoraInicio, FechaHoraFin, CupoMaximo)
+    VALUES
+        (@Clase, @Entrenador, @Inicio, DATEADD(HOUR, 1, @Inicio), 1);
+    SET @Sesion = CONVERT(INT, SCOPE_IDENTITY());
+
+    -- Ana toma el único cupo.
+    EXEC operacion.RegistrarReserva @SocioID = @Socio1, @SesionID = @Sesion;
+
+    IF NOT EXISTS (
+        SELECT 1
+        FROM operacion.Reserva
+        WHERE SocioID = @Socio1
+          AND SesionID = @Sesion
+          AND FechaCancelacion IS NULL
+    )
+        THROW 50100, N'Falló la prueba: no se registró la reserva de Ana.', 1;
+
+    -- Luis intenta reservar la misma sesión.
+    SET @ProbandoSegundoSocio = 1;
+    EXEC operacion.RegistrarReserva @SocioID = @Socio2, @SesionID = @Sesion;
+
+    THROW 50101, N'Falló la prueba: se aceptó una reserva por encima del cupo.', 1;
+END TRY
+BEGIN CATCH
+    IF XACT_STATE() <> 0
+        ROLLBACK TRANSACTION;
+
+    IF @ProbandoSegundoSocio = 1 AND ERROR_NUMBER() = 50004
+        SELECT N'Prueba aprobada' AS Resultado,
+               ERROR_NUMBER() AS Codigo,
+               ERROR_MESSAGE() AS Motivo;
+    ELSE
+        THROW;
+END CATCH;
+
+-- Cancelar y liberar cupo
+
+USE GimnasioDB;
+GO
+
+CREATE OR ALTER PROCEDURE operacion.CancelarReserva
+    @ReservaID INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    UPDATE operacion.Reserva
+    SET FechaCancelacion = SYSDATETIME()
+    WHERE ReservaID = @ReservaID
+      AND FechaCancelacion IS NULL;
+
+    IF @@ROWCOUNT = 0
+        THROW 50005, N'La reserva indicada no existe o ya fue cancelada.', 1;
+
+    SELECT @ReservaID AS ReservaCancelada;
+END;
+GO
+
+SELECT name AS Procedimiento
+FROM sys.procedures
+WHERE object_id = OBJECT_ID(N'operacion.CancelarReserva', N'P');
