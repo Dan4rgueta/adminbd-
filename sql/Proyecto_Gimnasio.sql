@@ -167,3 +167,99 @@ SELECT
 FROM sys.indexes
 WHERE object_id = OBJECT_ID(N'operacion.Reserva', N'U')
   AND name = N'UX_Reserva_Activa';
+-- Tabla Finanzas 
+USE GimnasioDB;
+GO
+
+IF OBJECT_ID(N'finanzas.Pago', N'U') IS NULL
+BEGIN
+    CREATE TABLE finanzas.Pago (
+        PagoID INT IDENTITY(1,1) CONSTRAINT PK_Pago PRIMARY KEY,
+        SocioID INT NOT NULL,
+        Monto DECIMAL(10,2) NOT NULL,
+        FechaPago DATETIME2(0) NOT NULL
+            CONSTRAINT DF_Pago_FechaPago DEFAULT (SYSDATETIME()),
+
+        CONSTRAINT FK_Pago_Socio
+            FOREIGN KEY (SocioID) REFERENCES operacion.Socio (SocioID),
+        CONSTRAINT CK_Pago_MontoPositivo
+            CHECK (Monto > 0)
+    );
+END;
+GO
+
+SELECT
+    SCHEMA_NAME(schema_id) AS Esquema,
+    name AS Tabla
+FROM sys.tables
+WHERE schema_id IN (SCHEMA_ID(N'operacion'), SCHEMA_ID(N'finanzas'))
+ORDER BY Esquema, Tabla;
+-- Comprobacion registro de Reserva
+USE GimnasioDB;
+GO
+
+CREATE OR ALTER PROCEDURE operacion.RegistrarReserva
+    @SocioID INT,
+    @SesionID INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SET XACT_ABORT ON;
+
+    DECLARE @CupoMaximo INT;
+    DECLARE @ReservaID INT;
+
+    BEGIN TRY
+        BEGIN TRANSACTION;
+
+        SELECT @CupoMaximo = CupoMaximo
+        FROM operacion.Sesion WITH (UPDLOCK, HOLDLOCK)
+        WHERE SesionID = @SesionID;
+
+        IF @CupoMaximo IS NULL
+            THROW 50001, N'La sesión indicada no existe.', 1;
+
+        IF NOT EXISTS (
+            SELECT 1
+            FROM operacion.Socio WITH (HOLDLOCK)
+            WHERE SocioID = @SocioID AND Activo = 1
+        )
+            THROW 50002, N'El socio no existe o está inactivo.', 1;
+
+        IF EXISTS (
+            SELECT 1
+            FROM operacion.Reserva
+            WHERE SesionID = @SesionID
+              AND SocioID = @SocioID
+              AND FechaCancelacion IS NULL
+        )
+            THROW 50003, N'El socio ya tiene una reserva activa para esta sesión.', 1;
+
+        IF (
+            SELECT COUNT(*)
+            FROM operacion.Reserva
+            WHERE SesionID = @SesionID
+              AND FechaCancelacion IS NULL
+        ) >= @CupoMaximo
+            THROW 50004, N'La sesión ya alcanzó su cupo máximo.', 1;
+
+        INSERT INTO operacion.Reserva (SocioID, SesionID)
+        VALUES (@SocioID, @SesionID);
+
+        SET @ReservaID = CONVERT(INT, SCOPE_IDENTITY());
+
+        COMMIT TRANSACTION;
+
+        SELECT @ReservaID AS ReservaID;
+    END TRY
+    BEGIN CATCH
+        IF XACT_STATE() <> 0
+            ROLLBACK TRANSACTION;
+        THROW;
+    END CATCH;
+END;
+GO
+
+SELECT name AS Procedimiento
+FROM sys.procedures
+WHERE object_id = OBJECT_ID(N'operacion.RegistrarReserva', N'P');
