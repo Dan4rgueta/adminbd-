@@ -406,3 +406,52 @@ WHERE Correo IN (
 )
 ORDER BY Nombres;
 GO
+
+-- Programación inicial de sesiones
+USE GimnasioDB;
+GO
+
+DECLARE @Sesiones TABLE (
+    Clase NVARCHAR(100),
+    CorreoEntrenador NVARCHAR(254),
+    Inicio DATETIME2(0),
+    Fin DATETIME2(0),
+    Cupo INT
+);
+
+INSERT INTO @Sesiones (Clase, CorreoEntrenador, Inicio, Fin, Cupo)
+VALUES
+    (N'Spinning', N'carlos.mendoza@example.com',
+     '2026-11-16T18:00:00', '2026-11-16T19:00:00', 12),
+    (N'Yoga', N'mariana.flores@example.com',
+     '2026-11-17T07:00:00', '2026-11-17T08:00:00', 15),
+    (N'Zumba', N'gabriel.castro@example.com',
+     '2026-11-18T17:00:00', '2026-11-18T18:00:00', 20);
+
+INSERT INTO operacion.Sesion
+    (ClaseID, EntrenadorID, FechaHoraInicio, FechaHoraFin, CupoMaximo)
+SELECT c.ClaseID, e.EntrenadorID, p.Inicio, p.Fin, p.Cupo
+FROM @Sesiones AS p
+JOIN operacion.Clase AS c ON c.Nombre = p.Clase
+JOIN operacion.Entrenador AS e ON e.Correo = p.CorreoEntrenador
+WHERE NOT EXISTS (
+    SELECT 1
+    FROM operacion.Sesion AS s
+    WHERE s.ClaseID = c.ClaseID
+      AND s.EntrenadorID = e.EntrenadorID
+      AND s.FechaHoraInicio = p.Inicio
+);
+
+SELECT @@ROWCOUNT AS SesionesAgregadas;
+
+SELECT s.SesionID, c.Nombre AS Clase,
+       CONCAT(e.Nombres, N' ', e.Apellidos) AS Entrenador,
+       s.FechaHoraInicio, s.FechaHoraFin, s.CupoMaximo
+FROM operacion.Sesion AS s
+JOIN operacion.Clase AS c ON c.ClaseID = s.ClaseID
+JOIN operacion.Entrenador AS e ON e.EntrenadorID = s.EntrenadorID
+JOIN @Sesiones AS p ON p.Clase = c.Nombre
+                   AND p.CorreoEntrenador = e.Correo
+                   AND p.Inicio = s.FechaHoraInicio
+ORDER BY s.FechaHoraInicio;
+GO
