@@ -472,3 +472,70 @@ WHERE type = 'R'
   AND name IN (N'rol_recepcion', N'rol_finanzas')
 ORDER BY name;
 GO
+-- Permisos de recepción y finanzas
+USE GimnasioDB;
+GO
+
+-- Recepción: alta de socios y consulta de clases, sesiones y reservas.
+GRANT SELECT, INSERT ON OBJECT::operacion.Socio TO rol_recepcion;
+GRANT SELECT ON OBJECT::operacion.Clase TO rol_recepcion;
+GRANT SELECT ON OBJECT::operacion.Sesion TO rol_recepcion;
+GRANT SELECT ON OBJECT::operacion.Entrenador (EntrenadorID, Nombres, Apellidos)
+    TO rol_recepcion;
+GRANT SELECT ON OBJECT::operacion.Reserva TO rol_recepcion;
+
+-- Recepción registra y cancela reservas mediante los procedimientos.
+GRANT EXECUTE ON OBJECT::operacion.RegistrarReserva TO rol_recepcion;
+GRANT EXECUTE ON OBJECT::operacion.CancelarReserva TO rol_recepcion;
+
+-- Finanzas: identificar al socio y registrar o consultar sus pagos.
+GRANT SELECT ON OBJECT::operacion.Socio (SocioID, Nombres, Apellidos)
+    TO rol_finanzas;
+GRANT SELECT, INSERT ON OBJECT::finanzas.Pago TO rol_finanzas;
+GO
+
+-- Comprobar los permisos asignados a cada rol.
+SELECT
+    rol.name AS Rol,
+    OBJECT_SCHEMA_NAME(p.major_id) AS Esquema,
+    OBJECT_NAME(p.major_id) AS Objeto,
+    COL_NAME(p.major_id, NULLIF(p.minor_id, 0)) AS Columna,
+    p.permission_name AS Permiso
+FROM sys.database_permissions AS p
+JOIN sys.database_principals AS rol
+    ON rol.principal_id = p.grantee_principal_id
+WHERE rol.name IN (N'rol_recepcion', N'rol_finanzas')
+  AND p.class = 1
+ORDER BY Rol, Esquema, Objeto, Permiso, Columna;
+GO
+
+-- Usuarios de prueba para recepción y finanzas
+USE GimnasioDB;
+GO
+
+IF DATABASE_PRINCIPAL_ID(N'usuario_recepcion') IS NULL
+    CREATE USER usuario_recepcion WITHOUT LOGIN;
+
+IF DATABASE_PRINCIPAL_ID(N'usuario_finanzas') IS NULL
+    CREATE USER usuario_finanzas WITHOUT LOGIN;
+GO
+
+IF IS_ROLEMEMBER(N'rol_recepcion', N'usuario_recepcion') = 0
+    ALTER ROLE rol_recepcion ADD MEMBER usuario_recepcion;
+
+IF IS_ROLEMEMBER(N'rol_finanzas', N'usuario_finanzas') = 0
+    ALTER ROLE rol_finanzas ADD MEMBER usuario_finanzas;
+GO
+
+-- Verificar a qué rol pertenece cada usuario.
+SELECT
+    usuario.name AS Usuario,
+    rol.name AS Rol
+FROM sys.database_role_members AS miembro
+JOIN sys.database_principals AS usuario
+    ON usuario.principal_id = miembro.member_principal_id
+JOIN sys.database_principals AS rol
+    ON rol.principal_id = miembro.role_principal_id
+WHERE usuario.name IN (N'usuario_recepcion', N'usuario_finanzas')
+ORDER BY usuario.name, rol.name;
+GO
