@@ -354,3 +354,26 @@ GO
 SELECT name AS Procedimiento
 FROM sys.procedures
 WHERE object_id = OBJECT_ID(N'operacion.CancelarReserva', N'P');
+
+-- Carga de datos iniciales del gimnasio
+USE GimnasioDB;
+GO
+
+INSERT INTO operacion.Clase (Nombre, Descripcion)
+SELECT datos.Nombre, datos.Descripcion
+FROM (VALUES
+    (N'Spinning', N'Entrenamiento cardiovascular en bicicleta fija.'),
+    (N'Yoga',     N'Práctica de posturas, respiración y flexibilidad.'),
+    (N'Zumba',    N'Entrenamiento cardiovascular con baile.')
+) AS datos (Nombre, Descripcion)
+WHERE NOT EXISTS (
+    SELECT 1
+    FROM operacion.Clase AS clase
+    WHERE clase.Nombre = datos.Nombre
+);
+
+SELECT Nombre, Activa
+FROM operacion.Clase
+WHERE Nombre IN (N'Spinning', N'Yoga', N'Zumba')
+ORDER BY Nombre;
+GO
