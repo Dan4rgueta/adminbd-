@@ -51,3 +51,43 @@ SELECT name AS Columna
 FROM sys.columns
 WHERE object_id = OBJECT_ID(N'operacion.Socio', N'U')
 ORDER BY column_id;
+
+-- Tabla Operacion Entrenador
+USE GimnasioDB;
+GO
+
+IF OBJECT_ID(N'operacion.Entrenador', N'U') IS NULL
+BEGIN
+    CREATE TABLE operacion.Entrenador (
+        EntrenadorID INT IDENTITY(1,1) CONSTRAINT PK_Entrenador PRIMARY KEY,
+        Nombres NVARCHAR(100) NOT NULL,
+        Apellidos NVARCHAR(100) NOT NULL,
+        Correo NVARCHAR(254) NOT NULL CONSTRAINT UQ_Entrenador_Correo UNIQUE,
+        Activo BIT NOT NULL CONSTRAINT DF_Entrenador_Activo DEFAULT (1)
+    );
+END;
+GO
+
+SELECT name AS Columna
+FROM sys.columns
+WHERE object_id = OBJECT_ID(N'operacion.Entrenador', N'U')
+ORDER BY column_id;
+-- Tabla operacion Clase (Tipos de clases en el gym) 
+USE GimnasioDB;
+GO
+
+IF OBJECT_ID(N'operacion.Clase', N'U') IS NULL
+BEGIN
+    CREATE TABLE operacion.Clase (
+        ClaseID INT IDENTITY(1,1) CONSTRAINT PK_Clase PRIMARY KEY,
+        Nombre NVARCHAR(100) NOT NULL CONSTRAINT UQ_Clase_Nombre UNIQUE,
+        Descripcion NVARCHAR(300) NULL,
+        Activa BIT NOT NULL CONSTRAINT DF_Clase_Activa DEFAULT (1)
+    );
+END;
+GO
+
+SELECT name AS Columna
+FROM sys.columns
+WHERE object_id = OBJECT_ID(N'operacion.Clase', N'U')
+ORDER BY column_id;
