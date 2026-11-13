@@ -539,3 +539,134 @@ JOIN sys.database_principals AS rol
 WHERE usuario.name IN (N'usuario_recepcion', N'usuario_finanzas')
 ORDER BY usuario.name, rol.name;
 GO
+
+-- Probar el acceso a los pagos con ambos usuarios
+USE GimnasioDB;
+GO
+
+-- Prueba 1: finanzas consulta los pagos.
+EXECUTE AS USER = N'usuario_finanzas';
+BEGIN TRY
+    SELECT USER_NAME() AS Usuario, PagoID, SocioID, Monto, FechaPago
+    FROM finanzas.Pago;
+END TRY
+BEGIN CATCH
+    REVERT;
+    THROW;
+END CATCH;
+REVERT;
+GO
+
+-- Prueba 2: recepción intenta ejecutar la misma consulta.
+EXECUTE AS USER = N'usuario_recepcion';
+BEGIN TRY
+    SELECT USER_NAME() AS Usuario, PagoID, SocioID, Monto, FechaPago
+    FROM finanzas.Pago;
+
+    SELECT N'Revisar permisos: recepción pudo consultar pagos.' AS Resultado;
+END TRY
+BEGIN CATCH
+    IF ERROR_NUMBER() <> 229
+    BEGIN
+        REVERT;
+        THROW;
+    END;
+
+    SELECT USER_NAME() AS Usuario,
+           ERROR_NUMBER() AS Codigo,
+           N'Prueba aprobada: acceso a pagos denegado.' AS Resultado;
+END CATCH;
+REVERT;
+GO
+
+-- Crear y activar la auditoría del servidor
+USE master;
+GO
+
+IF NOT EXISTS (
+    SELECT 1
+    FROM sys.server_audits
+    WHERE name = N'Auditoria_Gimnasio'
+)
+BEGIN
+    CREATE SERVER AUDIT Auditoria_Gimnasio
+    TO FILE (
+       FILEPATH = N'/var/opt/mssql/log/',
+        MAXSIZE = 10 MB,
+        MAX_ROLLOVER_FILES = 5
+    );
+END;
+GO
+
+ALTER SERVER AUDIT Auditoria_Gimnasio
+WITH (STATE = ON);
+GO
+
+SELECT
+    name AS Auditoria,
+    status_desc AS Estado,
+    audit_file_path AS Archivo
+FROM sys.dm_server_audit_status
+WHERE name = N'Auditoria_Gimnasio';
+GO
+
+-- Auditar consultas e inserciones en la tabla de pagos
+USE GimnasioDB;
+GO
+
+IF NOT EXISTS (
+    SELECT 1
+    FROM sys.database_audit_specifications
+    WHERE name = N'Auditoria_Pagos'
+)
+BEGIN
+    CREATE DATABASE AUDIT SPECIFICATION Auditoria_Pagos
+    FOR SERVER AUDIT Auditoria_Gimnasio
+        ADD (SELECT ON OBJECT::finanzas.Pago BY public),
+        ADD (INSERT ON OBJECT::finanzas.Pago BY public);
+END;
+GO
+
+ALTER DATABASE AUDIT SPECIFICATION Auditoria_Pagos
+WITH (STATE = ON);
+GO
+
+-- Verificar qué acciones quedaron activas y sobre qué tabla.
+SELECT
+    a.name AS Especificacion,
+    a.is_state_enabled AS Activa,
+    d.audit_action_name AS Accion,
+    OBJECT_SCHEMA_NAME(d.major_id) AS Esquema,
+    OBJECT_NAME(d.major_id) AS Tabla
+FROM sys.database_audit_specifications AS a
+JOIN sys.database_audit_specification_details AS d
+    ON d.database_specification_id = a.database_specification_id
+WHERE a.name = N'Auditoria_Pagos'
+ORDER BY d.audit_action_name;
+GO
+-- Consultar los accesos auditados a finanzas.Pago
+USE GimnasioDB;
+GO
+
+SELECT TOP (10)
+    event_time AS FechaHoraUTC,
+    database_principal_name AS Usuario,
+    CASE succeeded
+        WHEN 1 THEN N'Permitido'
+        ELSE N'Denegado'
+    END AS Acceso,
+    schema_name AS Esquema,
+    object_name AS Tabla,
+    statement AS Consulta
+FROM sys.fn_get_audit_file(
+    N'/var/opt/mssql/log/Auditoria_Gimnasio_*.sqlaudit',
+    DEFAULT,
+    DEFAULT
+)
+WHERE database_name = N'GimnasioDB'
+  AND schema_name = N'finanzas'
+  AND object_name = N'Pago'
+  AND action_id = 'SL'
+  AND database_principal_name IN (N'usuario_finanzas', N'usuario_recepcion')
+ORDER BY event_time DESC;
+GO
