@@ -123,3 +123,47 @@ SELECT
 FROM sys.foreign_keys
 WHERE parent_object_id = OBJECT_ID(N'operacion.Sesion', N'U')
 ORDER BY name;
+-- Tabla Reserva
+USE GimnasioDB;
+GO
+
+IF OBJECT_ID(N'operacion.Reserva', N'U') IS NULL
+BEGIN
+    CREATE TABLE operacion.Reserva (
+        ReservaID INT IDENTITY(1,1) CONSTRAINT PK_Reserva PRIMARY KEY,
+        SocioID INT NOT NULL,
+        SesionID INT NOT NULL,
+        FechaReserva DATETIME2(0) NOT NULL
+            CONSTRAINT DF_Reserva_FechaReserva DEFAULT (SYSDATETIME()),
+        FechaCancelacion DATETIME2(0) NULL,
+
+        CONSTRAINT FK_Reserva_Socio
+            FOREIGN KEY (SocioID) REFERENCES operacion.Socio (SocioID),
+        CONSTRAINT FK_Reserva_Sesion
+            FOREIGN KEY (SesionID) REFERENCES operacion.Sesion (SesionID),
+        CONSTRAINT CK_Reserva_FechaCancelacion
+            CHECK (FechaCancelacion IS NULL OR FechaCancelacion >= FechaReserva)
+    );
+END;
+GO
+
+IF NOT EXISTS (
+    SELECT 1
+    FROM sys.indexes
+    WHERE object_id = OBJECT_ID(N'operacion.Reserva', N'U')
+      AND name = N'UX_Reserva_Activa'
+)
+BEGIN
+    CREATE UNIQUE INDEX UX_Reserva_Activa
+        ON operacion.Reserva (SesionID, SocioID)
+        WHERE FechaCancelacion IS NULL;
+END;
+GO
+
+SELECT
+    name AS Indice,
+    is_unique AS EsUnico,
+    filter_definition AS Filtro
+FROM sys.indexes
+WHERE object_id = OBJECT_ID(N'operacion.Reserva', N'U')
+  AND name = N'UX_Reserva_Activa';
