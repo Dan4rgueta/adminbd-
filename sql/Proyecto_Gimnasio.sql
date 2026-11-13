@@ -91,3 +91,35 @@ SELECT name AS Columna
 FROM sys.columns
 WHERE object_id = OBJECT_ID(N'operacion.Clase', N'U')
 ORDER BY column_id;
+-- Tabla operacion Sesion 
+USE GimnasioDB;
+GO
+
+IF OBJECT_ID(N'operacion.Sesion', N'U') IS NULL
+BEGIN
+    CREATE TABLE operacion.Sesion (
+        SesionID INT IDENTITY(1,1) CONSTRAINT PK_Sesion PRIMARY KEY,
+        ClaseID INT NOT NULL,
+        EntrenadorID INT NOT NULL,
+        FechaHoraInicio DATETIME2(0) NOT NULL,
+        FechaHoraFin DATETIME2(0) NOT NULL,
+        CupoMaximo INT NOT NULL,
+
+        CONSTRAINT FK_Sesion_Clase
+            FOREIGN KEY (ClaseID) REFERENCES operacion.Clase (ClaseID),
+        CONSTRAINT FK_Sesion_Entrenador
+            FOREIGN KEY (EntrenadorID) REFERENCES operacion.Entrenador (EntrenadorID),
+        CONSTRAINT CK_Sesion_Horario
+            CHECK (FechaHoraFin > FechaHoraInicio),
+        CONSTRAINT CK_Sesion_CupoMaximo
+            CHECK (CupoMaximo > 0)
+    );
+END;
+GO
+
+SELECT
+    name AS ClaveForanea,
+    OBJECT_NAME(referenced_object_id) AS TablaReferenciada
+FROM sys.foreign_keys
+WHERE parent_object_id = OBJECT_ID(N'operacion.Sesion', N'U')
+ORDER BY name;
