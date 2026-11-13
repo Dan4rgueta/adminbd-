@@ -377,3 +377,32 @@ FROM operacion.Clase
 WHERE Nombre IN (N'Spinning', N'Yoga', N'Zumba')
 ORDER BY Nombre;
 GO
+
+-- Carga de Entrenadores ficticios 
+USE GimnasioDB;
+GO
+
+INSERT INTO operacion.Entrenador (Nombres, Apellidos, Correo)
+SELECT datos.Nombres, datos.Apellidos, datos.Correo
+FROM (VALUES
+    (N'Carlos',  N'Mendoza', N'carlos.mendoza@example.com'),
+    (N'Mariana', N'Flores',  N'mariana.flores@example.com'),
+    (N'Gabriel', N'Castro',  N'gabriel.castro@example.com')
+) AS datos (Nombres, Apellidos, Correo)
+WHERE NOT EXISTS (
+    SELECT 1
+    FROM operacion.Entrenador AS entrenador
+    WHERE entrenador.Correo = datos.Correo
+);
+
+SELECT @@ROWCOUNT AS EntrenadoresAgregados;
+
+SELECT EntrenadorID, Nombres, Apellidos, Activo
+FROM operacion.Entrenador
+WHERE Correo IN (
+    N'carlos.mendoza@example.com',
+    N'mariana.flores@example.com',
+    N'gabriel.castro@example.com'
+)
+ORDER BY Nombres;
+GO
