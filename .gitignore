@@ -1,0 +1,15 @@
+.env
+.env.*
+!.env.example
+*.bak
+*.trn
+*.mdf
+*.ldf
+*.sqlaudit
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+backups/
+powershell_transcript.log
+*.tmp
