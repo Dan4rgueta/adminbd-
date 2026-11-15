@@ -1,0 +1,18 @@
+digraph GimnasioDB {
+ graph [label="GimnasioDB | Modelo relacional — 6 tablas, 5 relaciones", labelloc=t, fontsize=20, fontname="DejaVu Sans Bold", ranksep=0.9, nodesep=0.65, pad=0.35, bgcolor="white", splines=polyline];
+ node [shape=plain,fontname="DejaVu Sans"];
+ edge [color="#228C90", penwidth=2, arrowsize=0.7, fontname="DejaVu Sans", fontsize=11];
+ socio [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#204564" BGCOLOR="#F4FAFC"><TR><TD BGCOLOR="#204564" COLSPAN="2"><FONT COLOR="white"><B>operacion.Socio</B></FONT></TD></TR><TR><TD ALIGN="LEFT">🔑 SocioID</TD><TD ALIGN="LEFT">PK INT</TD></TR><TR><TD ALIGN="LEFT">Nombres / Apellidos</TD><TD>NVARCHAR</TD></TR><TR><TD ALIGN="LEFT">Correo</TD><TD>UNIQUE</TD></TR><TR><TD ALIGN="LEFT">FechaRegistro</TD><TD>DATE</TD></TR><TR><TD ALIGN="LEFT">Activo</TD><TD>BIT</TD></TR></TABLE>>];
+ entrenador [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#204564" BGCOLOR="#F4FAFC"><TR><TD BGCOLOR="#204564" COLSPAN="2"><FONT COLOR="white"><B>operacion.Entrenador</B></FONT></TD></TR><TR><TD ALIGN="LEFT">EntrenadorID</TD><TD>PK INT</TD></TR><TR><TD ALIGN="LEFT">Nombres / Apellidos</TD><TD>NVARCHAR</TD></TR><TR><TD ALIGN="LEFT">Correo</TD><TD>UNIQUE</TD></TR><TR><TD ALIGN="LEFT">Activo</TD><TD>BIT</TD></TR></TABLE>>];
+ clase [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#204564" BGCOLOR="#F4FAFC"><TR><TD BGCOLOR="#204564" COLSPAN="2"><FONT COLOR="white"><B>operacion.Clase</B></FONT></TD></TR><TR><TD ALIGN="LEFT">ClaseID</TD><TD>PK INT</TD></TR><TR><TD ALIGN="LEFT">Nombre</TD><TD>UNIQUE</TD></TR><TR><TD ALIGN="LEFT">Descripcion</TD><TD>NVARCHAR</TD></TR><TR><TD ALIGN="LEFT">Activa</TD><TD>BIT</TD></TR></TABLE>>];
+ sesion [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#204564" BGCOLOR="#F4FAFC"><TR><TD BGCOLOR="#204564" COLSPAN="2"><FONT COLOR="white"><B>operacion.Sesion</B></FONT></TD></TR><TR><TD ALIGN="LEFT">SesionID</TD><TD>PK INT</TD></TR><TR><TD ALIGN="LEFT">ClaseID</TD><TD>FK INT</TD></TR><TR><TD ALIGN="LEFT">EntrenadorID</TD><TD>FK INT</TD></TR><TR><TD ALIGN="LEFT">FechaHoraInicio / Fin</TD><TD>DATETIME2</TD></TR><TR><TD ALIGN="LEFT">CupoMaximo</TD><TD>CHECK</TD></TR></TABLE>>];
+ reserva [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#204564" BGCOLOR="#F4FAFC"><TR><TD BGCOLOR="#204564" COLSPAN="2"><FONT COLOR="white"><B>operacion.Reserva</B></FONT></TD></TR><TR><TD ALIGN="LEFT">ReservaID</TD><TD>PK INT</TD></TR><TR><TD ALIGN="LEFT">SocioID</TD><TD>FK INT</TD></TR><TR><TD ALIGN="LEFT">SesionID</TD><TD>FK INT</TD></TR><TR><TD ALIGN="LEFT">FechaReserva</TD><TD>DATETIME2</TD></TR><TR><TD ALIGN="LEFT">FechaCancelacion</TD><TD>NULLABLE</TD></TR></TABLE>>];
+ pago [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" COLOR="#204564" BGCOLOR="#F4FAFC"><TR><TD BGCOLOR="#204564" COLSPAN="2"><FONT COLOR="white"><B>finanzas.Pago</B></FONT></TD></TR><TR><TD ALIGN="LEFT">PagoID</TD><TD>PK INT</TD></TR><TR><TD ALIGN="LEFT">SocioID</TD><TD>FK INT</TD></TR><TR><TD ALIGN="LEFT">Monto</TD><TD>CHECK &gt; 0</TD></TR><TR><TD ALIGN="LEFT">FechaPago</TD><TD>DATETIME2</TD></TR></TABLE>>];
+ {rank=same; socio;entrenador;clase;}
+ {rank=same;pago;reserva;sesion;}
+ socio->pago [label="1 a N", weight=2];
+ socio->reserva [label="1 a N", weight=1];
+ entrenador->sesion [label="1 a N", weight=2];
+ clase->sesion [label="1 a N", weight=2];
+ sesion->reserva [label="1 a N",weight=2];
+}
