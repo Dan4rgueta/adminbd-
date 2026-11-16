@@ -1,0 +1,344 @@
+{
+  "name": "GimnasioDB_Dashboard",
+  "compatibilityLevel": 1601,
+  "model": {
+    "culture": "es-SV",
+    "defaultPowerBIDataSourceVersion": "powerBI_V3",
+    "sourceQueryCulture": "es-SV",
+    "tables": [
+      {
+        "name": "RankingClases",
+        "columns": [
+          {
+            "name": "Anio",
+            "dataType": "int64",
+            "sourceColumn": "Anio",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Mes",
+            "dataType": "int64",
+            "sourceColumn": "Mes",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "ClaseID",
+            "dataType": "int64",
+            "sourceColumn": "ClaseID",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Clase",
+            "dataType": "string",
+            "sourceColumn": "Clase",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "ReservasActivas",
+            "dataType": "int64",
+            "sourceColumn": "ReservasActivas",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Posicion",
+            "dataType": "int64",
+            "sourceColumn": "Posicion",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Periodo",
+            "dataType": "string",
+            "sourceColumn": "Periodo",
+            "summarizeBy": "none"
+          }
+        ],
+        "measures": [
+          {
+            "name": "Reservas activas",
+            "expression": "SUM(RankingClases[ReservasActivas])",
+            "formatString": "#,0"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "RankingClases",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Origen = Sql.Database(ServidorSQL, BaseSQL, [CreateNavigationProperties=false]),",
+                "    Vista = Origen{[Schema=\"reportes\",Item=\"vw_RankingClases\"]}[Data],",
+                "    Resultado = Table.AddColumn(Vista, \"Periodo\", each Date.ToText(#date([Anio], [Mes], 1), \"yyyy-MM\"), type text)",
+                "in",
+                "    Resultado"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "IngresosDiarios",
+        "columns": [
+          {
+            "name": "Fecha",
+            "dataType": "dateTime",
+            "sourceColumn": "Fecha",
+            "summarizeBy": "none",
+            "formatString": "dd/MM/yyyy"
+          },
+          {
+            "name": "Ingresos",
+            "dataType": "decimal",
+            "sourceColumn": "Ingresos",
+            "summarizeBy": "none",
+            "formatString": "\"$\"#,0.00"
+          },
+          {
+            "name": "CantidadPagos",
+            "dataType": "int64",
+            "sourceColumn": "CantidadPagos",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "IngresosAcumulados",
+            "dataType": "decimal",
+            "sourceColumn": "IngresosAcumulados",
+            "summarizeBy": "none",
+            "formatString": "\"$\"#,0.00"
+          },
+          {
+            "name": "Periodo",
+            "dataType": "string",
+            "sourceColumn": "Periodo",
+            "summarizeBy": "none"
+          }
+        ],
+        "measures": [
+          {
+            "name": "Ingresos del período",
+            "expression": "SUM(IngresosDiarios[Ingresos])",
+            "formatString": "\"$\"#,0.00"
+          },
+          {
+            "name": "Pagos recibidos",
+            "expression": "SUM(IngresosDiarios[CantidadPagos])",
+            "formatString": "#,0"
+          },
+          {
+            "name": "Pago promedio",
+            "expression": "DIVIDE([Ingresos del período], [Pagos recibidos])",
+            "formatString": "\"$\"#,0.00"
+          },
+          {
+            "name": "Ingreso acumulado",
+            "expression": "MAX(IngresosDiarios[IngresosAcumulados])",
+            "formatString": "\"$\"#,0.00"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "IngresosDiarios",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Origen = Sql.Database(ServidorSQL, BaseSQL, [CreateNavigationProperties=false]),",
+                "    Vista = Origen{[Schema=\"reportes\",Item=\"vw_IngresosDiarios\"]}[Data],",
+                "    Resultado = Table.AddColumn(Vista, \"Periodo\", each Date.ToText(Date.From([Fecha]), \"yyyy-MM\"), type text)",
+                "in",
+                "    Resultado"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "OcupacionSesiones",
+        "columns": [
+          {
+            "name": "SesionID",
+            "dataType": "int64",
+            "sourceColumn": "SesionID",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Clase",
+            "dataType": "string",
+            "sourceColumn": "Clase",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "FechaHoraInicio",
+            "dataType": "dateTime",
+            "sourceColumn": "FechaHoraInicio",
+            "summarizeBy": "none",
+            "formatString": "dd/MM/yyyy HH:mm"
+          },
+          {
+            "name": "CupoMaximo",
+            "dataType": "int64",
+            "sourceColumn": "CupoMaximo",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "ReservasActivas",
+            "dataType": "int64",
+            "sourceColumn": "ReservasActivas",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "OcupacionPct",
+            "dataType": "double",
+            "sourceColumn": "OcupacionPct",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "OcupacionSesionAnterior",
+            "dataType": "double",
+            "sourceColumn": "OcupacionSesionAnterior",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "VariacionPuntos",
+            "dataType": "double",
+            "sourceColumn": "VariacionPuntos",
+            "summarizeBy": "none"
+          }
+        ],
+        "measures": [
+          {
+            "name": "Ocupación ponderada",
+            "expression": "DIVIDE(SUM(OcupacionSesiones[ReservasActivas]), SUM(OcupacionSesiones[CupoMaximo]), 0)",
+            "formatString": "0.0%"
+          },
+          {
+            "name": "Sesiones programadas",
+            "expression": "COUNTROWS(OcupacionSesiones)",
+            "formatString": "#,0"
+          },
+          {
+            "name": "Sesiones sin reservas",
+            "expression": "COALESCE(CALCULATE(COUNTROWS(OcupacionSesiones), OcupacionSesiones[ReservasActivas] = 0), 0)",
+            "formatString": "#,0"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "OcupacionSesiones",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Origen = Sql.Database(ServidorSQL, BaseSQL, [CreateNavigationProperties=false]),",
+                "    Vista = Origen{[Schema=\"reportes\",Item=\"vw_OcupacionSesiones\"]}[Data]",
+                "in",
+                "    Vista"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Indicadores",
+        "columns": [
+          {
+            "name": "SociosActivos",
+            "dataType": "int64",
+            "sourceColumn": "SociosActivos",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "SesionesTotales",
+            "dataType": "int64",
+            "sourceColumn": "SesionesTotales",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "ReservasActivas",
+            "dataType": "int64",
+            "sourceColumn": "ReservasActivas",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "IngresosTotales",
+            "dataType": "decimal",
+            "sourceColumn": "IngresosTotales",
+            "summarizeBy": "none",
+            "formatString": "\"$\"#,0.00"
+          },
+          {
+            "name": "ActualizadoUTC",
+            "dataType": "dateTime",
+            "sourceColumn": "ActualizadoUTC",
+            "summarizeBy": "none",
+            "formatString": "dd/MM/yyyy HH:mm"
+          }
+        ],
+        "measures": [
+          {
+            "name": "Socios activos",
+            "expression": "MAX(Indicadores[SociosActivos])",
+            "formatString": "#,0"
+          },
+          {
+            "name": "Sesiones totales",
+            "expression": "MAX(Indicadores[SesionesTotales])",
+            "formatString": "#,0"
+          },
+          {
+            "name": "Ingresos totales",
+            "expression": "MAX(Indicadores[IngresosTotales])",
+            "formatString": "\"$\"#,0.00"
+          },
+          {
+            "name": "Reservas del gimnasio",
+            "expression": "MAX(Indicadores[ReservasActivas])",
+            "formatString": "#,0"
+          },
+          {
+            "name": "Actualización UTC",
+            "expression": "FORMAT(MAX(Indicadores[ActualizadoUTC]), \"dd/MM/yyyy HH:mm\")"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Indicadores",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Origen = Sql.Database(ServidorSQL, BaseSQL, [CreateNavigationProperties=false]),",
+                "    Vista = Origen{[Schema=\"reportes\",Item=\"vw_Indicadores\"]}[Data],",
+                "    Resultado = Table.AddColumn(Vista, \"ActualizadoUTC\", each DateTimeZone.RemoveZone(DateTimeZone.FixedUtcNow()), type datetime)",
+                "in",
+                "    Resultado"
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "expressions": [
+      {
+        "name": "ServidorSQL",
+        "kind": "m",
+        "expression": "\"localhost,1434\" meta [IsParameterQuery=true, Type=\"Text\", IsParameterQueryRequired=true]"
+      },
+      {
+        "name": "BaseSQL",
+        "kind": "m",
+        "expression": "\"GimnasioDB_Rendimiento\" meta [IsParameterQuery=true, Type=\"Text\", IsParameterQueryRequired=true]"
+      }
+    ],
+    "annotations": [
+      {
+        "name": "__PBI_TimeIntelligenceEnabled",
+        "value": "0"
+      }
+    ]
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "name": "Gimnasio",
+  "dataColors": [
+    "#1E4C70",
+    "#17A398",
+    "#D49320",
+    "#746298",
+    "#45758B"
+  ],
+  "background": "#FFFFFF",
+  "foreground": "#193449",
+  "tableAccent": "#17A398"
+}

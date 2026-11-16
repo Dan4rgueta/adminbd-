@@ -1,0 +1,281 @@
+{
+  "config": "{\"version\":\"5.44\",\"activeSectionIndex\":0,\"themeCollection\":{\"baseTheme\":{\"name\":\"CY23SU04\",\"version\":\"5.46\",\"type\":2},\"customTheme\":{\"name\":\"Gimnasio.json\",\"version\":\"5.46\",\"type\":1}},\"defaultDrillFilterOtherVisuals\":true,\"settings\":{\"useNewFilterPaneExperience\":true,\"useStylableVisualContainerHeader\":true,\"useDefaultAggregateDisplayName\":true}}",
+  "filters": "[]",
+  "layoutOptimization": 0,
+  "resourcePackages": [
+    {
+      "resourcePackage": {
+        "name": "SharedResources",
+        "type": 2,
+        "disabled": false,
+        "items": [
+          {
+            "name": "CY23SU04",
+            "path": "BaseThemes/CY23SU04.json",
+            "type": 202
+          }
+        ]
+      }
+    },
+    {
+      "resourcePackage": {
+        "name": "RegisteredResources",
+        "type": 1,
+        "disabled": false,
+        "items": [
+          {
+            "name": "Gimnasio.json",
+            "path": "Gimnasio.json",
+            "type": 201
+          }
+        ]
+      }
+    }
+  ],
+  "sections": [
+    {
+      "name": "ReportSection8b3925b5504b501785d5",
+      "displayName": "Resumen",
+      "ordinal": 0,
+      "filters": "[]",
+      "displayOption": 1,
+      "width": 1280,
+      "height": 720,
+      "config": "{\"objects\":{\"background\":[{\"properties\":{\"color\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#F3F6F7'\"}}}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}]}}",
+      "visualContainers": [
+        {
+          "x": 20,
+          "y": 16,
+          "z": 1000,
+          "width": 880,
+          "height": 66,
+          "config": "{\"name\":\"51edd18a158a57dab709\",\"layouts\":[{\"id\":0,\"position\":{\"x\":20,\"y\":16,\"width\":880,\"height\":66,\"z\":1000,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"Gimnasio  /  Resumen\",\"textStyle\":{\"fontFamily\":\"Segoe UI Semibold\",\"fontSize\":\"26pt\",\"color\":\"#193449\"}}]}]}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 916,
+          "y": 15,
+          "z": 2000,
+          "width": 338,
+          "height": 72,
+          "config": "{\"name\":\"d45c59f2dc465ea7ae3a\",\"layouts\":[{\"id\":0,\"position\":{\"x\":916,\"y\":15,\"width\":338,\"height\":72,\"z\":2000,\"tabOrder\":2000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Dropdown'\"}}}}}],\"header\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Mes del ranking'\"}}},\"fontColor\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#193449'\"}}}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"13D\"}}}}}],\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#FFFFFF'\"}}}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}]},\"projections\":{\"Values\":[{\"queryRef\":\"RankingClases.Periodo\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"t0\",\"Entity\":\"RankingClases\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t0\"}},\"Property\":\"Periodo\"},\"Name\":\"RankingClases.Periodo\",\"NativeReferenceName\":\"Periodo\"}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 26,
+          "y": 101,
+          "z": 3000,
+          "width": 296,
+          "height": 88,
+          "config": "{\"name\":\"cc87d537eb1c5ea9bedb\",\"layouts\":[{\"id\":0,\"position\":{\"x\":26,\"y\":101,\"width\":296,\"height\":88,\"z\":3000,\"tabOrder\":3000}}],\"singleVisual\":{\"visualType\":\"card\",\"drillFilterOtherVisuals\":true,\"objects\":{\"categoryLabels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"labels\":[{\"properties\":{\"labelDisplayUnits\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"24D\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#1E4C70'\"}}}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Socios activos'\"}}},\"fontColor\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#193449'\"}}}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"13D\"}}}}}],\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#FFFFFF'\"}}}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}]},\"projections\":{\"Values\":[{\"queryRef\":\"Indicadores.Socios activos\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"t0\",\"Entity\":\"Indicadores\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t0\"}},\"Property\":\"Socios activos\"},\"Name\":\"Indicadores.Socios activos\",\"NativeReferenceName\":\"Socios activos\"}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 336,
+          "y": 101,
+          "z": 4000,
+          "width": 296,
+          "height": 88,
+          "config": "{\"name\":\"7c9904bb2f57505391f4\",\"layouts\":[{\"id\":0,\"position\":{\"x\":336,\"y\":101,\"width\":296,\"height\":88,\"z\":4000,\"tabOrder\":4000}}],\"singleVisual\":{\"visualType\":\"card\",\"drillFilterOtherVisuals\":true,\"objects\":{\"categoryLabels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"labels\":[{\"properties\":{\"labelDisplayUnits\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"24D\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#1E4C70'\"}}}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Sesiones totales'\"}}},\"fontColor\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#193449'\"}}}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"13D\"}}}}}],\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#FFFFFF'\"}}}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}]},\"projections\":{\"Values\":[{\"queryRef\":\"Indicadores.Sesiones totales\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"t0\",\"Entity\":\"Indicadores\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t0\"}},\"Property\":\"Sesiones totales\"},\"Name\":\"Indicadores.Sesiones totales\",\"NativeReferenceName\":\"Sesiones totales\"}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 646,
+          "y": 101,
+          "z": 5000,
+          "width": 296,
+          "height": 88,
+          "config": "{\"name\":\"f525b003506a57259784\",\"layouts\":[{\"id\":0,\"position\":{\"x\":646,\"y\":101,\"width\":296,\"height\":88,\"z\":5000,\"tabOrder\":5000}}],\"singleVisual\":{\"visualType\":\"card\",\"drillFilterOtherVisuals\":true,\"objects\":{\"categoryLabels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"labels\":[{\"properties\":{\"labelDisplayUnits\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"24D\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#1E4C70'\"}}}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Reservas activas totales'\"}}},\"fontColor\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#193449'\"}}}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"13D\"}}}}}],\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#FFFFFF'\"}}}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}]},\"projections\":{\"Values\":[{\"queryRef\":\"Indicadores.Reservas del gimnasio\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"t0\",\"Entity\":\"Indicadores\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t0\"}},\"Property\":\"Reservas del gimnasio\"},\"Name\":\"Indicadores.Reservas del gimnasio\",\"NativeReferenceName\":\"Reservas del gimnasio\"}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 956,
+          "y": 101,
+          "z": 6000,
+          "width": 296,
+          "height": 88,
+          "config": "{\"name\":\"690c4046dc1454379929\",\"layouts\":[{\"id\":0,\"position\":{\"x\":956,\"y\":101,\"width\":296,\"height\":88,\"z\":6000,\"tabOrder\":6000}}],\"singleVisual\":{\"visualType\":\"card\",\"drillFilterOtherVisuals\":true,\"objects\":{\"categoryLabels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"labels\":[{\"properties\":{\"labelDisplayUnits\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"24D\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#1E4C70'\"}}}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Ingresos totales · USD'\"}}},\"fontColor\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#193449'\"}}}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"13D\"}}}}}],\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#FFFFFF'\"}}}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}]},\"projections\":{\"Values\":[{\"queryRef\":\"Indicadores.Ingresos totales\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"t0\",\"Entity\":\"Indicadores\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t0\"}},\"Property\":\"Ingresos totales\"},\"Name\":\"Indicadores.Ingresos totales\",\"NativeReferenceName\":\"Ingresos totales\"}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 26,
+          "y": 208,
+          "z": 7000,
+          "width": 728,
+          "height": 482,
+          "config": "{\"name\":\"add0d3c9ab495eb281ce\",\"layouts\":[{\"id\":0,\"position\":{\"x\":26,\"y\":208,\"width\":728,\"height\":482,\"z\":7000,\"tabOrder\":7000}}],\"singleVisual\":{\"visualType\":\"clusteredBarChart\",\"drillFilterOtherVisuals\":true,\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Reservas activas por clase'\"}}},\"fontColor\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#193449'\"}}}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"13D\"}}}}}],\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#FFFFFF'\"}}}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}]},\"projections\":{\"Category\":[{\"queryRef\":\"RankingClases.Clase\"}],\"Y\":[{\"queryRef\":\"RankingClases.Reservas activas\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"t0\",\"Entity\":\"RankingClases\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t0\"}},\"Property\":\"Clase\"},\"Name\":\"RankingClases.Clase\",\"NativeReferenceName\":\"Clase\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t0\"}},\"Property\":\"Reservas activas\"},\"Name\":\"RankingClases.Reservas activas\",\"NativeReferenceName\":\"Reservas activas\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t0\"}},\"Property\":\"Reservas activas\"}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 770,
+          "y": 208,
+          "z": 8000,
+          "width": 484,
+          "height": 360,
+          "config": "{\"name\":\"7e2010aaf5ae59568617\",\"layouts\":[{\"id\":0,\"position\":{\"x\":770,\"y\":208,\"width\":484,\"height\":360,\"z\":8000,\"tabOrder\":8000}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"drillFilterOtherVisuals\":true,\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Posición de cada clase por mes'\"}}},\"fontColor\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#193449'\"}}}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"13D\"}}}}}],\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#FFFFFF'\"}}}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}]},\"projections\":{\"Values\":[{\"queryRef\":\"RankingClases.Periodo\"},{\"queryRef\":\"RankingClases.Posicion\"},{\"queryRef\":\"RankingClases.Clase\"},{\"queryRef\":\"RankingClases.ReservasActivas\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"t0\",\"Entity\":\"RankingClases\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t0\"}},\"Property\":\"Periodo\"},\"Name\":\"RankingClases.Periodo\",\"NativeReferenceName\":\"Mes\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t0\"}},\"Property\":\"Posicion\"},\"Name\":\"RankingClases.Posicion\",\"NativeReferenceName\":\"Posición\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t0\"}},\"Property\":\"Clase\"},\"Name\":\"RankingClases.Clase\",\"NativeReferenceName\":\"Clase\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t0\"}},\"Property\":\"ReservasActivas\"},\"Name\":\"RankingClases.ReservasActivas\",\"NativeReferenceName\":\"Reservas\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t0\"}},\"Property\":\"Periodo\"}}}]},\"columnProperties\":{\"RankingClases.Periodo\":{\"displayName\":\"Mes\"},\"RankingClases.Posicion\":{\"displayName\":\"Posición\"},\"RankingClases.ReservasActivas\":{\"displayName\":\"Reservas\"}}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 770,
+          "y": 601,
+          "z": 9000,
+          "width": 484,
+          "height": 88,
+          "config": "{\"name\":\"5ae60c8f51c556168435\",\"layouts\":[{\"id\":0,\"position\":{\"x\":770,\"y\":601,\"width\":484,\"height\":88,\"z\":9000,\"tabOrder\":9000}}],\"singleVisual\":{\"visualType\":\"card\",\"drillFilterOtherVisuals\":true,\"objects\":{\"categoryLabels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"labels\":[{\"properties\":{\"labelDisplayUnits\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"24D\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#1E4C70'\"}}}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Última actualización · UTC'\"}}},\"fontColor\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#193449'\"}}}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"13D\"}}}}}],\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#FFFFFF'\"}}}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}]},\"projections\":{\"Values\":[{\"queryRef\":\"Indicadores.Actualización UTC\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"t0\",\"Entity\":\"Indicadores\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t0\"}},\"Property\":\"Actualización UTC\"},\"Name\":\"Indicadores.Actualización UTC\",\"NativeReferenceName\":\"Actualización UTC\"}]}}}",
+          "filters": "[]"
+        }
+      ]
+    },
+    {
+      "name": "ReportSection70ced157477055e9a469",
+      "displayName": "Finanzas",
+      "ordinal": 1,
+      "filters": "[]",
+      "displayOption": 1,
+      "width": 1280,
+      "height": 720,
+      "config": "{\"objects\":{\"background\":[{\"properties\":{\"color\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#F3F6F7'\"}}}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}]}}",
+      "visualContainers": [
+        {
+          "x": 20,
+          "y": 16,
+          "z": 1000,
+          "width": 880,
+          "height": 66,
+          "config": "{\"name\":\"2abed40292345c10ad0d\",\"layouts\":[{\"id\":0,\"position\":{\"x\":20,\"y\":16,\"width\":880,\"height\":66,\"z\":1000,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"Gimnasio  /  Finanzas\",\"textStyle\":{\"fontFamily\":\"Segoe UI Semibold\",\"fontSize\":\"26pt\",\"color\":\"#193449\"}}]}]}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 916,
+          "y": 15,
+          "z": 2000,
+          "width": 338,
+          "height": 72,
+          "config": "{\"name\":\"07835d995a6e5f53b15e\",\"layouts\":[{\"id\":0,\"position\":{\"x\":916,\"y\":15,\"width\":338,\"height\":72,\"z\":2000,\"tabOrder\":2000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Dropdown'\"}}}}}],\"header\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Mes de pago'\"}}},\"fontColor\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#193449'\"}}}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"13D\"}}}}}],\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#FFFFFF'\"}}}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}]},\"projections\":{\"Values\":[{\"queryRef\":\"IngresosDiarios.Periodo\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"t0\",\"Entity\":\"IngresosDiarios\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t0\"}},\"Property\":\"Periodo\"},\"Name\":\"IngresosDiarios.Periodo\",\"NativeReferenceName\":\"Periodo\"}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 26,
+          "y": 101,
+          "z": 3000,
+          "width": 399,
+          "height": 88,
+          "config": "{\"name\":\"e1a2879289e15f149c0f\",\"layouts\":[{\"id\":0,\"position\":{\"x\":26,\"y\":101,\"width\":399,\"height\":88,\"z\":3000,\"tabOrder\":3000}}],\"singleVisual\":{\"visualType\":\"card\",\"drillFilterOtherVisuals\":true,\"objects\":{\"categoryLabels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"labels\":[{\"properties\":{\"labelDisplayUnits\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"24D\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#1E4C70'\"}}}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Ingresos del período'\"}}},\"fontColor\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#193449'\"}}}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"13D\"}}}}}],\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#FFFFFF'\"}}}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}]},\"projections\":{\"Values\":[{\"queryRef\":\"IngresosDiarios.Ingresos del período\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"t0\",\"Entity\":\"IngresosDiarios\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t0\"}},\"Property\":\"Ingresos del período\"},\"Name\":\"IngresosDiarios.Ingresos del período\",\"NativeReferenceName\":\"Ingresos del período\"}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 440,
+          "y": 101,
+          "z": 4000,
+          "width": 399,
+          "height": 88,
+          "config": "{\"name\":\"f14a8597371a5f07af8f\",\"layouts\":[{\"id\":0,\"position\":{\"x\":440,\"y\":101,\"width\":399,\"height\":88,\"z\":4000,\"tabOrder\":4000}}],\"singleVisual\":{\"visualType\":\"card\",\"drillFilterOtherVisuals\":true,\"objects\":{\"categoryLabels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"labels\":[{\"properties\":{\"labelDisplayUnits\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"24D\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#1E4C70'\"}}}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Pagos recibidos'\"}}},\"fontColor\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#193449'\"}}}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"13D\"}}}}}],\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#FFFFFF'\"}}}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}]},\"projections\":{\"Values\":[{\"queryRef\":\"IngresosDiarios.Pagos recibidos\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"t0\",\"Entity\":\"IngresosDiarios\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t0\"}},\"Property\":\"Pagos recibidos\"},\"Name\":\"IngresosDiarios.Pagos recibidos\",\"NativeReferenceName\":\"Pagos recibidos\"}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 854,
+          "y": 101,
+          "z": 5000,
+          "width": 399,
+          "height": 88,
+          "config": "{\"name\":\"be18f3fb8a905ed481d2\",\"layouts\":[{\"id\":0,\"position\":{\"x\":854,\"y\":101,\"width\":399,\"height\":88,\"z\":5000,\"tabOrder\":5000}}],\"singleVisual\":{\"visualType\":\"card\",\"drillFilterOtherVisuals\":true,\"objects\":{\"categoryLabels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"labels\":[{\"properties\":{\"labelDisplayUnits\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"24D\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#1E4C70'\"}}}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Pago promedio'\"}}},\"fontColor\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#193449'\"}}}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"13D\"}}}}}],\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#FFFFFF'\"}}}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}]},\"projections\":{\"Values\":[{\"queryRef\":\"IngresosDiarios.Pago promedio\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"t0\",\"Entity\":\"IngresosDiarios\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t0\"}},\"Property\":\"Pago promedio\"},\"Name\":\"IngresosDiarios.Pago promedio\",\"NativeReferenceName\":\"Pago promedio\"}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 26,
+          "y": 208,
+          "z": 6000,
+          "width": 1228,
+          "height": 226,
+          "config": "{\"name\":\"5e99b0a40071597b9037\",\"layouts\":[{\"id\":0,\"position\":{\"x\":26,\"y\":208,\"width\":1228,\"height\":226,\"z\":6000,\"tabOrder\":6000}}],\"singleVisual\":{\"visualType\":\"clusteredColumnChart\",\"drillFilterOtherVisuals\":true,\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Ingresos diarios · USD'\"}}},\"fontColor\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#193449'\"}}}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"13D\"}}}}}],\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#FFFFFF'\"}}}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}]},\"projections\":{\"Category\":[{\"queryRef\":\"IngresosDiarios.Fecha\"}],\"Y\":[{\"queryRef\":\"IngresosDiarios.Ingresos del período\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"t0\",\"Entity\":\"IngresosDiarios\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t0\"}},\"Property\":\"Fecha\"},\"Name\":\"IngresosDiarios.Fecha\",\"NativeReferenceName\":\"Fecha\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t0\"}},\"Property\":\"Ingresos del período\"},\"Name\":\"IngresosDiarios.Ingresos del período\",\"NativeReferenceName\":\"Ingresos del período\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t0\"}},\"Property\":\"Fecha\"}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 26,
+          "y": 450,
+          "z": 7000,
+          "width": 1228,
+          "height": 240,
+          "config": "{\"name\":\"b3a8c04d49df5278acba\",\"layouts\":[{\"id\":0,\"position\":{\"x\":26,\"y\":450,\"width\":1228,\"height\":240,\"z\":7000,\"tabOrder\":7000}}],\"singleVisual\":{\"visualType\":\"lineChart\",\"drillFilterOtherVisuals\":true,\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Ingresos acumulados desde el inicio · USD'\"}}},\"fontColor\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#193449'\"}}}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"13D\"}}}}}],\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#FFFFFF'\"}}}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}]},\"projections\":{\"Category\":[{\"queryRef\":\"IngresosDiarios.Fecha\"}],\"Y\":[{\"queryRef\":\"IngresosDiarios.Ingreso acumulado\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"t0\",\"Entity\":\"IngresosDiarios\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t0\"}},\"Property\":\"Fecha\"},\"Name\":\"IngresosDiarios.Fecha\",\"NativeReferenceName\":\"Fecha\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t0\"}},\"Property\":\"Ingreso acumulado\"},\"Name\":\"IngresosDiarios.Ingreso acumulado\",\"NativeReferenceName\":\"Ingreso acumulado\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t0\"}},\"Property\":\"Fecha\"}}}]}}}",
+          "filters": "[]"
+        }
+      ]
+    },
+    {
+      "name": "ReportSection37ee8aef3a07502fac15",
+      "displayName": "Ocupación",
+      "ordinal": 2,
+      "filters": "[]",
+      "displayOption": 1,
+      "width": 1280,
+      "height": 720,
+      "config": "{\"objects\":{\"background\":[{\"properties\":{\"color\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#F3F6F7'\"}}}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}]}}",
+      "visualContainers": [
+        {
+          "x": 20,
+          "y": 16,
+          "z": 1000,
+          "width": 880,
+          "height": 66,
+          "config": "{\"name\":\"6f6cf4dc1be6506d952d\",\"layouts\":[{\"id\":0,\"position\":{\"x\":20,\"y\":16,\"width\":880,\"height\":66,\"z\":1000,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"Gimnasio  /  Ocupación\",\"textStyle\":{\"fontFamily\":\"Segoe UI Semibold\",\"fontSize\":\"26pt\",\"color\":\"#193449\"}}]}]}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 916,
+          "y": 15,
+          "z": 2000,
+          "width": 338,
+          "height": 72,
+          "config": "{\"name\":\"aa94959ea9815892b7bf\",\"layouts\":[{\"id\":0,\"position\":{\"x\":916,\"y\":15,\"width\":338,\"height\":72,\"z\":2000,\"tabOrder\":2000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Dropdown'\"}}}}}],\"header\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Clase'\"}}},\"fontColor\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#193449'\"}}}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"13D\"}}}}}],\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#FFFFFF'\"}}}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}]},\"projections\":{\"Values\":[{\"queryRef\":\"OcupacionSesiones.Clase\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"t0\",\"Entity\":\"OcupacionSesiones\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t0\"}},\"Property\":\"Clase\"},\"Name\":\"OcupacionSesiones.Clase\",\"NativeReferenceName\":\"Clase\"}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 26,
+          "y": 101,
+          "z": 3000,
+          "width": 399,
+          "height": 88,
+          "config": "{\"name\":\"492fdca0291f50918914\",\"layouts\":[{\"id\":0,\"position\":{\"x\":26,\"y\":101,\"width\":399,\"height\":88,\"z\":3000,\"tabOrder\":3000}}],\"singleVisual\":{\"visualType\":\"card\",\"drillFilterOtherVisuals\":true,\"objects\":{\"categoryLabels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"labels\":[{\"properties\":{\"labelDisplayUnits\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"24D\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#1E4C70'\"}}}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Sesiones programadas'\"}}},\"fontColor\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#193449'\"}}}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"13D\"}}}}}],\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#FFFFFF'\"}}}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}]},\"projections\":{\"Values\":[{\"queryRef\":\"OcupacionSesiones.Sesiones programadas\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"t0\",\"Entity\":\"OcupacionSesiones\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t0\"}},\"Property\":\"Sesiones programadas\"},\"Name\":\"OcupacionSesiones.Sesiones programadas\",\"NativeReferenceName\":\"Sesiones programadas\"}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 440,
+          "y": 101,
+          "z": 4000,
+          "width": 399,
+          "height": 88,
+          "config": "{\"name\":\"51db50e931355b47a094\",\"layouts\":[{\"id\":0,\"position\":{\"x\":440,\"y\":101,\"width\":399,\"height\":88,\"z\":4000,\"tabOrder\":4000}}],\"singleVisual\":{\"visualType\":\"card\",\"drillFilterOtherVisuals\":true,\"objects\":{\"categoryLabels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"labels\":[{\"properties\":{\"labelDisplayUnits\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"24D\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#1E4C70'\"}}}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Ocupación ponderada'\"}}},\"fontColor\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#193449'\"}}}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"13D\"}}}}}],\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#FFFFFF'\"}}}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}]},\"projections\":{\"Values\":[{\"queryRef\":\"OcupacionSesiones.Ocupación ponderada\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"t0\",\"Entity\":\"OcupacionSesiones\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t0\"}},\"Property\":\"Ocupación ponderada\"},\"Name\":\"OcupacionSesiones.Ocupación ponderada\",\"NativeReferenceName\":\"Ocupación ponderada\"}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 854,
+          "y": 101,
+          "z": 5000,
+          "width": 399,
+          "height": 88,
+          "config": "{\"name\":\"193d22e248cd55e0a8ca\",\"layouts\":[{\"id\":0,\"position\":{\"x\":854,\"y\":101,\"width\":399,\"height\":88,\"z\":5000,\"tabOrder\":5000}}],\"singleVisual\":{\"visualType\":\"card\",\"drillFilterOtherVisuals\":true,\"objects\":{\"categoryLabels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"labels\":[{\"properties\":{\"labelDisplayUnits\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"24D\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#1E4C70'\"}}}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Sesiones sin reservas'\"}}},\"fontColor\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#193449'\"}}}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"13D\"}}}}}],\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#FFFFFF'\"}}}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}]},\"projections\":{\"Values\":[{\"queryRef\":\"OcupacionSesiones.Sesiones sin reservas\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"t0\",\"Entity\":\"OcupacionSesiones\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t0\"}},\"Property\":\"Sesiones sin reservas\"},\"Name\":\"OcupacionSesiones.Sesiones sin reservas\",\"NativeReferenceName\":\"Sesiones sin reservas\"}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 26,
+          "y": 208,
+          "z": 6000,
+          "width": 447,
+          "height": 482,
+          "config": "{\"name\":\"9dd00abf5de25cb58168\",\"layouts\":[{\"id\":0,\"position\":{\"x\":26,\"y\":208,\"width\":447,\"height\":482,\"z\":6000,\"tabOrder\":6000}}],\"singleVisual\":{\"visualType\":\"clusteredBarChart\",\"drillFilterOtherVisuals\":true,\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Ocupación ponderada por clase'\"}}},\"fontColor\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#193449'\"}}}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"13D\"}}}}}],\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#FFFFFF'\"}}}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}]},\"projections\":{\"Category\":[{\"queryRef\":\"OcupacionSesiones.Clase\"}],\"Y\":[{\"queryRef\":\"OcupacionSesiones.Ocupación ponderada\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"t0\",\"Entity\":\"OcupacionSesiones\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t0\"}},\"Property\":\"Clase\"},\"Name\":\"OcupacionSesiones.Clase\",\"NativeReferenceName\":\"Clase\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t0\"}},\"Property\":\"Ocupación ponderada\"},\"Name\":\"OcupacionSesiones.Ocupación ponderada\",\"NativeReferenceName\":\"Ocupación ponderada\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t0\"}},\"Property\":\"Ocupación ponderada\"}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 488,
+          "y": 208,
+          "z": 7000,
+          "width": 766,
+          "height": 482,
+          "config": "{\"name\":\"380df9c9046455a7a4fb\",\"layouts\":[{\"id\":0,\"position\":{\"x\":488,\"y\":208,\"width\":766,\"height\":482,\"z\":7000,\"tabOrder\":7000}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"drillFilterOtherVisuals\":true,\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Ocupación y cambio respecto a la sesión anterior'\"}}},\"fontColor\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#193449'\"}}}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"13D\"}}}}}],\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#FFFFFF'\"}}}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}]},\"projections\":{\"Values\":[{\"queryRef\":\"OcupacionSesiones.SesionID\"},{\"queryRef\":\"OcupacionSesiones.Clase\"},{\"queryRef\":\"OcupacionSesiones.FechaHoraInicio\"},{\"queryRef\":\"OcupacionSesiones.CupoMaximo\"},{\"queryRef\":\"OcupacionSesiones.ReservasActivas\"},{\"queryRef\":\"OcupacionSesiones.OcupacionPct\"},{\"queryRef\":\"OcupacionSesiones.VariacionPuntos\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"t0\",\"Entity\":\"OcupacionSesiones\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t0\"}},\"Property\":\"SesionID\"},\"Name\":\"OcupacionSesiones.SesionID\",\"NativeReferenceName\":\"ID\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t0\"}},\"Property\":\"Clase\"},\"Name\":\"OcupacionSesiones.Clase\",\"NativeReferenceName\":\"Clase\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t0\"}},\"Property\":\"FechaHoraInicio\"},\"Name\":\"OcupacionSesiones.FechaHoraInicio\",\"NativeReferenceName\":\"Inicio\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t0\"}},\"Property\":\"CupoMaximo\"},\"Name\":\"OcupacionSesiones.CupoMaximo\",\"NativeReferenceName\":\"Cupo\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t0\"}},\"Property\":\"ReservasActivas\"},\"Name\":\"OcupacionSesiones.ReservasActivas\",\"NativeReferenceName\":\"Reservas\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t0\"}},\"Property\":\"OcupacionPct\"},\"Name\":\"OcupacionSesiones.OcupacionPct\",\"NativeReferenceName\":\"Ocup. (%)\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t0\"}},\"Property\":\"VariacionPuntos\"},\"Name\":\"OcupacionSesiones.VariacionPuntos\",\"NativeReferenceName\":\"Cambio (p.p.)\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t0\"}},\"Property\":\"FechaHoraInicio\"}}}]},\"columnProperties\":{\"OcupacionSesiones.SesionID\":{\"displayName\":\"ID\"},\"OcupacionSesiones.FechaHoraInicio\":{\"displayName\":\"Inicio\"},\"OcupacionSesiones.CupoMaximo\":{\"displayName\":\"Cupo\"},\"OcupacionSesiones.ReservasActivas\":{\"displayName\":\"Reservas\"},\"OcupacionSesiones.OcupacionPct\":{\"displayName\":\"Ocup. (%)\"},\"OcupacionSesiones.VariacionPuntos\":{\"displayName\":\"Cambio (p.p.)\"}}}}",
+          "filters": "[]"
+        }
+      ]
+    }
+  ],
+  "theme": "Gimnasio.json"
+}
