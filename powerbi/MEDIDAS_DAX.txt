@@ -1,0 +1,15 @@
+-- Crear estas medidas en Power BI (Modelado > Nueva medida).
+-- Cada fórmula después del signo igual es DAX; no pegar todo el archivo a la vez.
+
+Ingresos totales = SUM(IngresosDiarios[Ingresos])
+Número de pagos = SUM(IngresosDiarios[CantidadPagos])
+Ticket promedio = DIVIDE([Ingresos totales], [Número de pagos], 0)
+Reservas activas = SUM(RankingClases[ReservasActivas])
+Sesiones programadas = COUNTROWS(OcupacionSesiones)
+Cupos disponibles = SUM(OcupacionSesiones[CupoMaximo]) - SUM(OcupacionSesiones[ReservasActivas])
+Ocupación ponderada % = DIVIDE(SUM(OcupacionSesiones[ReservasActivas]), SUM(OcupacionSesiones[CupoMaximo]), 0)
+Variación ocupación p.p. = AVERAGE(OcupacionSesiones[VariacionPuntos])
+Socios activos (total) = MAX(Indicadores[SociosActivos])
+
+-- Formato: moneda $ para ingresos y ticket; porcentaje para Ocupación ponderada %.
+-- Separar páginas de finanzas y operación para no mezclar filtros de tablas sin relación.
