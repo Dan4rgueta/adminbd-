@@ -8,11 +8,11 @@ Escenario: socios, entrenadores, clases, sesiones, reservas y pagos.
 - `sql/00_Base.sql` a `sql/04_Datos_Demo.sql`: modelo, procedimientos y carga inicial.
 - `sql/05_Seguridad.sql` y `sql/06_Auditoria.sql`: roles, permisos y trazabilidad.
 - `sql/07_Consultas.sql`, `08_Indices.sql`, `09_Dimensionamiento.sql`: 3 consultas con ventanas, índices, estimación y mediciones.
-- `powerbi/`: vistas y recursos para construir el archivo `.pbix` en Power BI Desktop; **no incluye un `.pbix` validado**.
+- [Dashboard de Power BI](powerbi/Dashboard/GimnasioDB_Dashboard.pbix) con las páginas Resumen, Finanzas y Ocupación. [Captura de la página Resumen](evidencias/PowerBI_Resumen.png).
 - `sql/10_Backup.sql` a `sql/13_Restauracion_DEMO.sql`: FULL/DIFF/LOG, SQL Server Agent y validaciones.
 - `docs/`: política de respaldo, pendientes de evidencia y seguimiento de rúbrica.
 - `diagramas/`: modelo relacional y cardinalidades.
-- `informe/Informe_GimnasioDB.docx` y `.pdf`: informe final de 17 páginas.
+- `informe/` contiene el diccionario, el dimensionamiento, la seguridad y las [mediciones de rendimiento](informe/Optimizacion.md). El informe final Word/PDF está pendiente de incorporación al repositorio.
 
 ## Orden de ejecución en SSMS
 
